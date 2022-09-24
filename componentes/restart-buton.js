@@ -4,16 +4,6 @@ export class RestartButton
     {
         this.relatedScene = scene;
     }
-
-    preload()
-    {
-        this.relatedScene.load.spritesheet('button','../imagenes/restart.png',
-        {
-            frameWidth:190,
-            frameHeight:49
-        });
-    }
-
     create()
     {
             this.startButton = this.relatedScene.add.sprite(300,430,'button').setInteractive();//set interatic avisa cuando estan pasando cosas sobre el boton
