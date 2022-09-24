@@ -7,7 +7,8 @@ export class Gameover extends Phaser.Scene//exporto una escena
     }
     create()
     {
-        this.add.image(350,305,'bg').setScale(2);//como ya se preload el background en game, no hace falta repetir
+        this.bg = this.add.image(599,0,'bg').setOrigin(0,0).setScale(1.1);
+        this.bg.angle = 90;
         this.restartButton.create();
         this.gameoverImage = this.add.image(300,250,'gameover');
     }
