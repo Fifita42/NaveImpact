@@ -1,4 +1,4 @@
-import{Scoreboard} from './componentes/scoreboard/Scoreboard.js';
+import{Scoreboard} from './componentes/Scoreboard/Scoreboard.js';
 import{LiveCounter} from './componentes/live/LiveCounter.js';
 import{Nave} from './componentes/nave/nave.js';
 import{Meteor, record} from './componentes/asteroides/asteroid.js';
@@ -22,6 +22,13 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
       this.load.image('cuerpo','imagenes/cuerpo.png');
       this.load.image('asteroide','imagenes/asteroid.png');
       this.load.atlas('navecita','imagenes/cohete.png','sprite.json');
+      this.load.image('gameover', 'imagenes/gameover.png');
+      this.load.spritesheet('button','imagenes/restart.png',
+      {
+          frameWidth:190,
+          frameHeight:49
+      });
+
     }
     create() {
       this.physics.world.setBoundsCollision(true, true, true, true);
