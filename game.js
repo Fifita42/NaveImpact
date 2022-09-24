@@ -1,4 +1,4 @@
-import{Scoreboard} from './componentes/Scoreboard/Scoreboard.js';
+import{Scoreboard} from './componentes/scoreboard/Scoreboard.js';
 import{LiveCounter} from './componentes/live/LiveCounter.js';
 import{Nave} from './componentes/nave/nave.js';
 import{Meteor, record} from './componentes/asteroides/asteroid.js';
