@@ -85,7 +85,7 @@ export class Mando
     }
     calc()
     {
-      if(window.innerWidth>heig){
+      if(window.innerWidth>window.innerHeight){
         this.visibles = false;
         console.log('wid grande');
       }else this.visibles = true;
