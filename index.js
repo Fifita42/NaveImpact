@@ -35,7 +35,7 @@ function calcW()
   {
     if((wid*1.5)<=700)
     {
-      wid = 412*1.5;
+      wid = wid*1.5;
       return wid;
     }else return 600;
 
