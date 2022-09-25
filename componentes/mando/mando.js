@@ -12,12 +12,14 @@ export class Mando
         this.left = { isDown: false };
         this.up = { isDown: false };
         this.down = { isDown: false };
+        this.visibles;
     }
 
     create()
     {
         this.calc();
         this.calcW();
+
         this.rightButton = this.relatedScene.add.image(this.widd-150,this.heigg-230,'derecha').setInteractive({ draggable: true });this.rightButton.setOrigin(0,0);this.rightButton.setScale(2);
         this.leftButton = this.relatedScene.add.image(this.widd-330,this.heigg-230,'izquierda').setInteractive({ draggable: true });this.leftButton.setOrigin(0,0);this.leftButton.setScale(2);
         this.upButton = this.relatedScene.add.image(170,this.heigg-320,'izquierda').setInteractive({ draggable: true });this.upButton.angle = 90;this.upButton.setOrigin(0,0);this.upButton.setScale(2);
@@ -71,12 +73,24 @@ export class Mando
           this.downButton.on('dragend', () => {
             this.down.isDown = false;
           });
-
+          if(!this.visibles)
+          {
+            this.rightButton.visible=false;
+            this.leftButton.visible=false;
+            this.downButton.visible=false;
+            this.upButton.visible=false;
+          }
+        
 
     }
     calc()
     {
-        if(wid>heig)
+      if(window.innerWidth>heig){
+        this.visibles = false;
+        console.log('wid grande');
+      }else this.visibles = true;
+
+      if(wid>heig)
         {
           if(wid<=600)this.widd = wid;
           else {
@@ -96,7 +110,6 @@ export class Mando
     {
         if(heig>wid)
         {
-            console.log(heig);
             if(heig<=1200)
             {
                 this.heigg = heig;
