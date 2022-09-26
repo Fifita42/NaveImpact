@@ -12,14 +12,14 @@ export class LiveCounter
     create()
     {
         this.calc();
-        let displacement = 40;//cant de pixeles entre imagen de vidas
+        let displacement = 50;//cant de pixeles entre imagen de vidas
         let firstPosition = this.widd - ((this.initialLives)*displacement);
         this.liveImages = this.relatedScene.physics.add.staticGroup(
         {
             setScale:
             {
-                x: 0.5,
-                y: 0.5
+                x: 0.9,
+                y: 0.9
             },
             key:'navecita',
             frameQuantity: this.initialLives,
@@ -30,7 +30,7 @@ export class LiveCounter
                 cellWidth: displacement,
                 cellHeight: 30,
                 x: firstPosition,
-                y: -20
+                y: 10
             }
         })
     }
