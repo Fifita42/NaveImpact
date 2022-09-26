@@ -70,6 +70,9 @@ const config = {
       'transparent'
     ]
   },
+  input:{
+    activePointers:4,
+  },
   scene: [Game, Congratulations, Gameover],//que escenas va a haber en mi juego [Game,GameOver,Win,etc]
   physics: {//fisiacas
     default: 'arcade',//las basicas de 2d
