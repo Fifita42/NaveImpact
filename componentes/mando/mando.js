@@ -30,7 +30,7 @@ export class Mando
             this.right.isDown = false;
             
           });
-          this.leftButton.on('pointerout', () => {
+          this.leftButton.on('pointerup', () => {
             this.left.isDown = false;
           });
           this.leftButton.on('dragend', () => {
@@ -39,11 +39,11 @@ export class Mando
       
 
           this.rightButton.on('pointerdown', () => {
-            this.right.isDown = true;
             this.left.isDown = false;
+            this.right.isDown = true;
            
           });
-          this.rightButton.on('pointerout', () => {
+          this.rightButton.on('pointerup', () => {
             this.right.isDown = false;
           });
           this.rightButton.on('dragend', () => {
@@ -55,7 +55,7 @@ export class Mando
             this.down.isDown = false;
             this.up.isDown = true;
           });
-          this.upButton.on('pointerout', () => {
+          this.upButton.on('pointerup', () => {
             this.up.isDown = false;
           });
           this.upButton.on('dragend', () => {
@@ -67,7 +67,7 @@ export class Mando
             this.down.isDown = true;
             this.up.isDown = false;
           });
-          this.downButton.on('pointerout', () => {
+          this.downButton.on('pointerup', () => {
             this.down.isDown = false;
           });
           this.downButton.on('dragend', () => {
