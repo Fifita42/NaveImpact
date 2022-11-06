@@ -47,7 +47,7 @@ import { Gameover } from './escenas/game-over.js';
 
 const config = {
   pixelArt: true,//remarca los pixeles de las imagenes
-  type: Phaser.AUTO,//indica si usar canvas o WebGl depende de ordenador
+  type: Phaser.CANVAS,//indica si usar canvas o WebGl depende de ordenador
   // width: 600,//tamaño de canvas
   // height: 800,
   scale: {
