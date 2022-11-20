@@ -3,7 +3,7 @@ import{LiveCounter} from './componentes/live/LiveCounter.js';
 import{Mando} from './componentes/mando/mando.js';
 import{Nave} from './componentes/nave/nave.js';
 import{Meteor, record} from './componentes/asteroides/asteroid.js';
-export let tiempo = 700;//cada cuamto caen asteroides
+import {wid} from '../../index.js';
 export let caida = 222;//velocidad de caida
 export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien lo pida
 
@@ -18,6 +18,11 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
       this.score = new Scoreboard(this);
       this.lives = new LiveCounter(this,3);
       this.mado = new Mando(this);
+      this.widd = wid;
+      this.tiempo = 700;//cada cuamto caen asteroides
+      this.timer;
+      this.timerContador;
+      this.contador = 0;
     }
     preload() 
     {
@@ -38,9 +43,9 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
     
     create() {
       this.physics.world.setBoundsCollision(true, true, true, true);
-      this.bg = this.add.image(640,0,'bg').setOrigin(0,0).setScale(1.4);
+      this.bg = this.add.image(0,0,'bg').setOrigin(0,0).setScale(1.4);
       //this.bg.flipX = 180;
-      this.bg.angle = 90;
+      //this.bg.angle = 90;
       this.mado.create();
       this.score.create();
       this.lives.create();
@@ -65,13 +70,31 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
         this.meteoros.create();
         this.meteoros.setAsteroidCollicion();
 
-      var timer = this.time.addEvent(//lanzar meteoros cada tiempo
+        this.timer = this.time.addEvent(//lanzar meteoros cada tiempo
         {
-          delay:tiempo,
+          delay:this.tiempo,
           callback: this.lanzarMeteor,
           callbackScope: this,
           loop: true
-        })
+        });
+      
+        //cada 20 segundos actualiza la velocidad de creaciond de meteoros
+        this.timerContador = this.time.addEvent(//lanzar meteoros cada tiempo
+        {
+          delay:20000,
+          callback: ()=>{
+            if(this.tiempo>10)this.tiempo--;
+            this.timer = this.time.addEvent(//lanzar meteoros cada tiempo
+            {
+              delay:this.tiempo,
+              callback: this.lanzarMeteor,
+              callbackScope: this,
+              loop: true
+            });
+          },
+          callbackScope: this,
+          loop: true
+        });
         this.cursors = this.input.keyboard.createCursorKeys();
     }
     update() 
@@ -84,23 +107,24 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
 
     lanzarMeteor()
     {
-        let met1 = this.meteoros.get().get(Phaser.Math.Between(0,200),Phaser.Math.Between(-50,-200),'asteroide').setScale(0.3);
+      let met1 = this.meteoros.get().get(Phaser.Math.Between(0,this.widd/3),Phaser.Math.Between(-50,-200),'asteroide').setScale(0.3);
         
-        let met2 = this.meteoros.get().get(Phaser.Math.Between(220,400),Phaser.Math.Between(-100,-150),'asteroide').setScale(0.3);
+      let met2 = this.meteoros.get().get(Phaser.Math.Between(this.widd/3,this.widd/2),Phaser.Math.Between(-100,-150),'asteroide').setScale(0.3);
         
-        let met3 = this.meteoros.get().get(Phaser.Math.Between(420,600),Phaser.Math.Between(-200,-250),'asteroide').setScale(0.3);
+      let met3 = this.meteoros.get().get(Phaser.Math.Between(this.widd/2,this.widd),Phaser.Math.Between(-200,-250),'asteroide').setScale(0.3);
     
-        if(met1&&met2&&met3)
-        {
+      if(met1&&met2&&met3)//si fueron creados correctamente
+      {
         met1.setActive(true);
         met1.body.velocity.y = caida;
   
         met2.setActive(true);
         met2.body.velocity.y = caida;
-  
+
         met3.setActive(true);
         met3.body.velocity.y = caida;
       }
+
       met1.outOfBoundsKill = true;
       met2.outOfBoundsKill = true;
       met3.outOfBoundsKill = true;
@@ -116,11 +140,11 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
       {
         if(aster.x<this.naveP.get().x)
           {
-
+            //destruye
           }
           else if(aster.x>this.naveP.get().x)
           {
-
+            //destruye
           }
     }else
       {

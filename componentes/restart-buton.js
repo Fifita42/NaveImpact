@@ -1,3 +1,5 @@
+import {wid} from '../../index.js';
+import {heig} from '../../index.js';
 export class RestartButton
 {
     constructor(scene)
@@ -6,7 +8,7 @@ export class RestartButton
     }
     create()
     {
-            this.startButton = this.relatedScene.add.sprite(300,430,'button').setInteractive();//set interatic avisa cuando estan pasando cosas sobre el boton
+            this.startButton = this.relatedScene.add.sprite(wid/2,(heig/2)+100,'button').setInteractive();//set interatic avisa cuando estan pasando cosas sobre el boton
     
             this.startButton.on('pointerover',()=>//poner raton encima
             {

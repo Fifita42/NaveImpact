@@ -1,4 +1,6 @@
 import { RestartButton } from '../componentes/restart-buton.js'
+import {wid} from '../../index.js';
+import {heig} from '../../index.js';
 export class Gameover extends Phaser.Scene//exporto una escena
 {
     constructor() {
@@ -7,10 +9,10 @@ export class Gameover extends Phaser.Scene//exporto una escena
     }
     create()
     {
-        this.bg = this.add.image(640,0,'bg').setOrigin(0,0).setScale(1.4);
-        this.bg.angle = 90;
+        this.bg = this.add.image(0,0,'bg').setOrigin(0,0).setScale(1.4);
+        this.gameoverImage = this.add.image(wid/2,(heig/2)-100,'gameover');
         this.restartButton.create();
-        this.gameoverImage = this.add.image(300,250,'gameover');
+    
     }
 
 }
