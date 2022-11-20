@@ -1,63 +1,44 @@
 export let heig = window.innerHeight;
 export let wid = window.innerWidth;
-console.log(window.innerWidth);
-console.log(window.innerHeight);
-function calc()
-{
-  if(heig>wid)
-  {
-    if((heig*1.5)<=1200)
-    {
-      heig = heig*1.5;
-      return heig;
-    }else
-    {
-      return 800;
-    }
-  }else
-  {
-    heig = 800;
-    return 800;
-  }
- // return heig = 791*1.5;
-}
-function calcW()
-{
- // return wid = 412*1.5;
-  if(wid>heig)
-  {
-    if(wid<=600)return wid;
-    else {
-      wid = 600;
-      return 600;
-    }
-  }else
-  {
-    if((wid*1.5)<=700)
-    {
-      wid = wid*1.5;
-      return wid;
-    }else return 600;
+let dispositivo;
 
+function queDispositivoEstaUsando()
+{
+  let navegador = navigator.userAgent;
+  if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+      dispositivo = "celular";
+      console.log("Estás usando un dispositivo móvil!!");
+      heig = heig*1.5;
+      wid = wid*1.5;
+      if(heig>1190)heig=1190;
+      if(wid>812)wid=812;
+
+    } else {
+      dispositivo = "computadora";
+      console.log("No estás usando un móvil");
+      heig = 800;
+      wid = 600;
   }
 }
+queDispositivoEstaUsando();
 import { Game } from './game.js';//trae la clase Game dentro del archivo especificado
 import { Congratulations  } from './escenas/congratulations.js';
 import { Gameover } from './escenas/game-over.js';
 
 const config = {
   pixelArt: true,//remarca los pixeles de las imagenes
-  type: Phaser.CANVAS,//indica si usar canvas o WebGl depende de ordenador
+  type: Phaser.AUTO,//indica si usar canvas o WebGl depende de ordenador
   // width: 600,//tamaño de canvas
   // height: 800,
   scale: {
     mode: Phaser.Scale.FIT,
     parent: 'phaser-example',
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: calcW(),
-    height: calc(),
+    
+    width: wid,
+    height: heig
 },
-  parent: 'container',//id del contenedor
+  parent: 'phaser-example',//id del contenedor
   backgroundColor: '#34495E',//fondo del lienzo
   banner:
   {

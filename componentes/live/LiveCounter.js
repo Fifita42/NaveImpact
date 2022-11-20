@@ -6,12 +6,11 @@ export class LiveCounter
     {
         this.relatedScene = scene;
         this.initialLives = initialLives;
-        this.widd;
+        this.widd = wid;
     }
 
     create()
     {
-        this.calc();
         let displacement = 50;//cant de pixeles entre imagen de vidas
         let firstPosition = this.widd - ((this.initialLives)*displacement);
         this.liveImages = this.relatedScene.physics.add.staticGroup(
@@ -35,23 +34,6 @@ export class LiveCounter
         })
     }
 
-    calc()
-    {
-        if(wid>heig)
-        {
-          if(wid<=600)this.widd = wid;
-          else {
-            this.widd = 600;
-          }
-        }else
-        {
-            if((wid*1.5)<=600)this.widd = wid;
-            else {
-              this.widd = 600;
-            }
-        }
-      
-    }
     liveLost()//funcion llamada por game.js
     {
         if (this.liveImages.countActive() == 1)//si perdio cuando tenia una vida, manda false, que activa gameover

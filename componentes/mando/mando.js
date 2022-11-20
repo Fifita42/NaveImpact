@@ -6,20 +6,19 @@ export class Mando
     {
         this.relatedScene = scene;
         this.initialLives = initialLives;
-        this.widd;
-        this.heigg;
+        this.widd = wid;
+        this.heigg = heig;
         this.right = {isDown: false};
         this.left = { isDown: false };
         this.up = { isDown: false };
         this.down = { isDown: false };
         this.visibles;
+        this.dispositivo;
     }
 
     create()
     {
-        this.calc();
-        this.calcW();
-
+        this.queDispositivoEstaUsando();
         this.rightButton = this.relatedScene.add.image(this.widd-150,this.heigg-230,'derecha').setInteractive({ draggable: true });this.rightButton.setOrigin(0,0);this.rightButton.setScale(2);
         this.leftButton = this.relatedScene.add.image(this.widd-330,this.heigg-230,'izquierda').setInteractive({ draggable: true });this.leftButton.setOrigin(0,0);this.leftButton.setScale(2);
         this.upButton = this.relatedScene.add.image(170,this.heigg-370,'izquierda').setInteractive({ draggable: true });this.upButton.angle = 90;this.upButton.setOrigin(0,0);this.upButton.setScale(2);
@@ -83,46 +82,18 @@ export class Mando
         
 
     }
-    calc()
-    {
-      if(window.innerWidth>window.innerHeight){
-        this.visibles = false;
-        console.log('wid grande');
-      }else this.visibles = true;
 
-      if(wid>heig)
-        {
-          if(wid<=600)this.widd = wid;
-          else {
-            this.widd = 600;
-          }
-        }else
-        {
-            if(wid<=600)this.widd = wid;
-            else {
-              this.widd = 600;
-            }
-        }
-      
-    }
-
-    calcW()
+    queDispositivoEstaUsando()
     {
-        if(heig>wid)
-        {
-            if(heig<=1200)
-            {
-                this.heigg = heig;
-            }
-            else
-            {
-                this.heigg = 800;
-            }
-        }
-        else
-        {
-            this.heigg = 800;
-        }
+      let navegador = navigator.userAgent;
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+          this.dispositivo = "celular";
+          console.log("Estás usando un dispositivo móvil!!");
+        this.visibles = true;
+        } else {
+          this.dispositivo = "computadora";
+          console.log("No estás usando un móvil");
+      }
     }
 
 }
