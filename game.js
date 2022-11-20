@@ -3,7 +3,7 @@ import{LiveCounter} from './componentes/live/LiveCounter.js';
 import{Mando} from './componentes/mando/mando.js';
 import{Nave} from './componentes/nave/nave.js';
 import{Meteor, record} from './componentes/asteroides/asteroid.js';
-import {wid} from '../../index.js';
+import {wid} from '../index.js';
 export let caida = 222;//velocidad de caida
 export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien lo pida
 
