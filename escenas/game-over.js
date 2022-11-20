@@ -1,6 +1,6 @@
 import { RestartButton } from '../componentes/restart-buton.js'
-import {wid} from '../../index.js';
-import {heig} from '../../index.js';
+import {wid} from '../index.js';
+import {heig} from '../index.js';
 export class Gameover extends Phaser.Scene//exporto una escena
 {
     constructor() {
