@@ -38,7 +38,7 @@ export class LiveCounter
     {
         if (this.liveImages.countActive() == 1)//si perdio cuando tenia una vida, manda false, que activa gameover
         {
-            console.log('perdiste');//manda datos al endgame y a la comprovacion luego de la perdida de la bala.
+            //console.log('perdiste');//manda datos al endgame y a la comprovacion luego de la perdida de la bala.
             this.relatedScene.endGame(true);//false para reiniciar el juego y false para no reiniciar las posiciones
         return;
         }
