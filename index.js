@@ -22,7 +22,7 @@ function queDispositivoEstaUsando()
 }
 queDispositivoEstaUsando();
 import { Game } from './game.js';//trae la clase Game dentro del archivo especificado
-import { Congratulations  } from './escenas/congratulations.js';
+import { Play  } from './escenas/play.js';
 import { Gameover } from './escenas/game-over.js';
 
 const config = {
@@ -54,7 +54,7 @@ const config = {
   input:{
     activePointers:4,
   },
-  scene: [Game, Congratulations, Gameover],//que escenas va a haber en mi juego [Game,GameOver,Win,etc]
+  scene: [Play, Game,Gameover],//que escenas va a haber en mi juego [Game,GameOver,Win,etc]
   physics: {//fisiacas
     default: 'arcade',//las basicas de 2d
     arcade: {

@@ -4,7 +4,6 @@ import{Mando} from './componentes/mando/mando.js';
 import{Nave} from './componentes/nave/nave.js';
 import{Meteor, record} from './componentes/asteroides/asteroid.js';
 import {wid} from './index.js';
-export let caida = 222;//velocidad de caida
 export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien lo pida
 
 //Phaser.Scene contiene una escena básica y nosotros la extendemos para darle la funcionalidad que requiere nuestro juego.
@@ -21,23 +20,17 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
       this.widd = wid;
       this.tiempo = 700;//cada cuamto caen asteroides
       this.timer;
+      this.caida = 222;
       this.timerContador;
       this.contador = 0;
     }
     preload() 
     {
-      this.load.image('bg','imagenes/background.jpg');
       this.load.image('cuerpo','imagenes/cuerpo.png');
       this.load.image('asteroide','imagenes/asteroid.png');
       this.load.image('derecha','imagenes/right.png');
       this.load.image('izquierda','imagenes/left.png');
       this.load.atlas('navecita','imagenes/cohete.png','sprite.json');
-      this.load.image('gameover', 'imagenes/gameover.png');
-      this.load.spritesheet('button','imagenes/restart.png',
-      {
-          frameWidth:190,
-          frameHeight:49
-      });
 
     }
     
@@ -116,26 +109,26 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
       if(met1&&met2&&met3)//si fueron creados correctamente
       {
         met1.setActive(true);
-        met1.body.velocity.y = caida;
+        met1.body.velocity.y = this.caida;
   
         met2.setActive(true);
-        met2.body.velocity.y = caida;
+        met2.body.velocity.y = this.caida;
 
         met3.setActive(true);
-        met3.body.velocity.y = caida;
+        met3.body.velocity.y = this.caida;
       }
 
       met1.outOfBoundsKill = true;
       met2.outOfBoundsKill = true;
       met3.outOfBoundsKill = true;
-      caida+=2;
+      this.caida+=2;
       this.score.incrementPoints(30);
     }
 
     impact(aster)
     {
       this.score.incrementPoints(-30);
-      caida+=10;
+      this.caida+=10;
       if(aster.y>this.naveP.get().y-30)
       {
         if(aster.x<this.naveP.get().x)
@@ -157,7 +150,6 @@ export class Game extends Phaser.Scene {//permitimos enviar esta clase a quien l
   {
       if(completed)
       {
-          caida = 222;
           this.scene.start('gameover');
       }
   }
